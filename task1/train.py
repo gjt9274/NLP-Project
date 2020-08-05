@@ -114,7 +114,7 @@ def train(
 if __name__ == "__main__":
     train_file = "data/IMDB/labeledTrainData.tsv"
     data_freq, data_bigram, data_tfidf, label = data_process(train_file)
-    train_x, trian_y, val_x, val_y = split_data(data_freq, label)
+    train_x, trian_y, val_x, val_y = split_data(data_tfidf, label)
 
     w, train_all_loss, val_all_loss = train(
         train_x, trian_y, val_x, val_y, early_stop=10)
