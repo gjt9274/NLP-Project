@@ -8,23 +8,7 @@
 """
 
 import numpy as np
-
-# 定义数据批量生成器
-
-
-def batch_generator(data, batch_size, shuffle=True):
-    X, Y = data
-    n_samples = X.shape[0]
-    indices = np.arange(n_samples)
-    if shuffle:
-        np.random.shuffle(indices)  # 打乱顺序
-
-    for start in range(0, n_samples, batch_size):
-        end = min(start + batch_size, n_samples)
-        batch_idx = indices[start:end]
-
-        yield X[batch_idx], Y[batch_idx]
-
+from sklearn import metrics
 
 # softmax函数
 def softmax(scores):
@@ -34,8 +18,17 @@ def softmax(scores):
 
 
 # 预测函数
-def predict(w, b, x):
-    scores = np.dot(x, w.T) + b
+def predict(w,x):
+    scores = np.dot(x, w.T)
     probs = softmax(scores)
 
     return np.argmax(probs, axis=1).reshape(-1, 1)
+
+def evaluate(y_true,y_pred):
+    precision = metrics.precision_score(y_true,y_pred)
+    recall = metrics.recall_score(y_true,y_pred)
+    f1_score = metrics.f1_score(y_true,y_pred)
+
+    return precision,recall,f1_score
+
+
