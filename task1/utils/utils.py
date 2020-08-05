@@ -39,26 +39,3 @@ def predict(w, b, x):
     probs = softmax(scores)
 
     return np.argmax(probs, axis=1).reshape(-1, 1)
-
-
-# 评估函数，包括精确率，召回率和F1值
-def evaluate(w, val_x, val_y):
-    val_loss = []
-    val_gen = batch_generator((val_x, val_y), batch_size=32, shuffle=False)
-    for batch_x, batch_y in val_gen:
-        scores = np.dot(batch_x, w.T)
-        prob = softmax(scores)
-
-        y_one_hot = one_hot(batch_y)
-        # 损失函数
-        loss = - (1.0 / len(batch_x)) * np.sum(y_one_hot * np.log(prob))
-        val_loss.append(loss)
-
-    return np.mean(val_loss)
-
-
-def one_hot(batch_y, n_classes=2):
-    n = batch_y.shape[0]
-    one_hot = np.zeros((n, n_classes))
-    one_hot[np.arange(n), batch_y.T] = 1
-    return one_hot
