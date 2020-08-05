@@ -21,7 +21,7 @@ def split_data(x, y, val_split=0.2):
     indices = np.random.permutation(n_samples)
     split = int(n_samples * (1 - val_split))
     training_idx = indices[:split]
-    valid_idx = indices[split + 1:]
+    valid_idx = indices[split:]
 
     train_x = x[training_idx]
     train_y = y[training_idx]
