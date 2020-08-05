@@ -8,7 +8,7 @@
 """
 
 import numpy as np
-from utils.utils import softmax
+from utils.utils import softmax, predict, evaluate
 from data_loader.data_loader import data_process, batch_generator
 
 
@@ -53,7 +53,7 @@ def train(
         train_y,
         valid_x,
         valid_y,
-        lr=0.01,
+        lr=0.1,
         batch_size=128,
         epochs=5000,
         early_stop=None):
@@ -86,27 +86,36 @@ def train(
 
         val_loss = valid(w, valid_x, valid_y, batch_size)
 
+        val_precision, val_recall, val_f1_score = evaluate(
+            valid_y, predict(w, valid_x))
+
         print(
-            "Epoch = {0},the train loss = {1:.4f}, the val loss = {2:.4f}".format(
+            "Epoch = {0},the train loss = {1:.4f}, the val loss = {2:.4f}, precision={3:.4f}%, recall={4:.4f}%, f1_score={4:.4f}%".format(
                 epoch,
                 np.mean(train_loss),
-                val_loss))
+                val_loss,
+                val_precision * 100,
+                val_recall * 100,
+                val_f1_score * 100)
+        )
 
         train_all_loss.append(np.mean(train_loss))
         val_all_loss.append(val_loss)
 
-        if early_stop is not None:
-            if val_loss <= best_val_loss:
-                best_val_loss = val_loss
-                best_w = w
-                not_improved = 0
-            else:
-                not_improved += 1
+        if not isinstance(early_stop, int):
+            continue
 
-            if not_improved > early_stop:
-                print("Validation performance didn\'t improve for {} epochs. "
-                      "Training stops.".format(early_stop))
-                break
+        if val_loss < best_val_loss:
+            best_val_loss = val_loss
+            best_w = w
+            not_improved = 0
+        else:
+            not_improved += 1
+
+        if not_improved > early_stop:
+            print("Validation performance didn\'t improve for {} epochs. "
+                  "Training stops.".format(early_stop))
+            break
 
     return best_w, train_all_loss, val_all_loss
 
