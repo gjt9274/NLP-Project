@@ -1,6 +1,4 @@
 .idea
 .ipynb_checkpoints
 **/__pycache__
-**/*.tsv
-**/*.csv
-**/*.txt
+**/data/
