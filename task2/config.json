@@ -1,0 +1,22 @@
+{
+    "embedding_size": 256,
+    "kernel_size": [2, 3, 4],
+    "num_filters": 100,
+    "num_classes": 2,
+
+    "data_dir": "data/IMDB/",
+    "batch_size": 64,
+    "shuffle": true,
+    "validation_split": 0.2,
+    "num_workers": 1,
+    "max_text_len": 600,
+    "vocab_size": 5000,
+
+    "epochs": 1000,
+    "lr": 0.01,
+    "do_validation": true,
+    "early_stop":10,
+    "save_model": true,
+    "save_dir": "log/model"
+
+}
