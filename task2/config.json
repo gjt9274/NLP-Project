@@ -9,7 +9,7 @@
     "shuffle": true,
     "validation_split": 0.2,
     "num_workers": 1,
-    "max_text_len": 600,
+    "max_text_len": 500,
     "vocab_size": 5000,
 
     "epochs": 1000,

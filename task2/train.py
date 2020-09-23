@@ -17,7 +17,7 @@ from model.torch_textcnn import TextCnn
 
 
 class Trainer:
-    def __init__(self, config, data_loader, valid_data_loader=None):
+    def __init__(self, config, model,data_loader, valid_data_loader=None):
         self.data_loader = data_loader
         self.valid_data_loader = valid_data_loader
 
@@ -26,7 +26,7 @@ class Trainer:
         self.do_validation = config.do_validation
         self.lr = config.lr
 
-        self.model = TextCnn(config)
+        self.model = model
         self.criterion = nn.CrossEntropyLoss()
         self.optimizer = optim.Adam(self.model.parameters(), lr=self.lr)
 
@@ -101,8 +101,9 @@ def main(config):
     dataset = ImdbDataset(config)
     train_loader = ImdbDataLoader(dataset, config)
     valid_loader = train_loader.split_validation()
+    model = TextCnn(config)
 
-    trainer = Trainer(config, train_loader, valid_loader)
+    trainer = Trainer(config,model, train_loader, valid_loader)
     trainer.train()
 
 
