@@ -55,7 +55,7 @@ def train(
         valid_y,
         lr=0.1,
         batch_size=128,
-        epochs=5000,
+        epochs=100,
         early_stop=None):
 
     n_features = train_x.shape[1]
