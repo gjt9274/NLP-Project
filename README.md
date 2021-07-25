@@ -8,7 +8,7 @@
 - [ ] Task3:基于注意力机制的文本匹配
 - [ ] Task4:基于BiLSTM+CRF的命名实体识别
 - [x] Task5:基于神经网络的语言模型
-- [ ] Task6:基于seq2seq(attention)的机器翻译
+- [ ] Task6:基于seq2seq的Data-to-text
 - [ ] Task7:基于transformer的机器翻译
 
 ------
@@ -20,5 +20,5 @@
 | 3. 基于注意力机制的文本匹配         | notebook / data |
 | 4. 基于BiLSTM + CRF的命名实体识别   | notebook / data |
 | 5. 基于神经网络的语言模型           | [notebook](https://nbviewer.jupyter.org/github/gjt9274/NLP-Project/blob/master/task5/notebook/%E5%9F%BA%E4%BA%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B.ipynb) / [data](#) |
-| 6. 基于seq2seq(attention)的机器翻译 | notebook / data |
+| 6. 基于seq2seq的Data-to-text | notebook / data |
 | 7.基于transformer的机器翻译         | notebook / data |
